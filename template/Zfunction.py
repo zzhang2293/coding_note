@@ -20,7 +20,7 @@ def Efunction(string1: str, string2: str) -> list:
     central, right = 0, 0
     e_array = [0] * n
     for i in range(m):
-        len_ = min(right - i, string2_z_array[i - central]) if r > i else 0
+        len_ = min(right - i, string2_z_array[i - central]) if right > i else 0
         while i + len_ < m and len_ < n and string1[i + len_] == string2[len_]:
             len_ += 1
         if i + len_ > right:
