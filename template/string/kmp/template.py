@@ -86,4 +86,11 @@ class KMP:
 
 # TODO something have not finished
 
+# print(KMP().find("aaaaa", "aaa"))
+
+
+a = "abc" * (10 ** 9)
+
+if "a" in a:
+    print("hello")
 

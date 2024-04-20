@@ -44,7 +44,7 @@ class SpiralMatrix:
         return f
 
     @staticmethod
-    def num_to_loc(m, n, num) -> int:
+    def num_to_loc(m, n, num) -> tuple[int, int]:
         """
         把一个数字转换成在矩阵中的位置
         :param m: row len
@@ -52,8 +52,7 @@ class SpiralMatrix:
         :param num: 数字
         :return: 具体矩阵中的位置
         """
-        m += 1
-        return [num // m, num % n]
+        return num // n, num % n
 
     @staticmethod
     def loc_to_num(row, col, m, n) -> int:
@@ -66,7 +65,7 @@ class SpiralMatrix:
         :return: 具体数字 unique
         """
 
-        return row * m + col
+        return row * n + col
 
     @staticmethod
     def get_spiral_matrix_num(m, n, r, c) -> int:

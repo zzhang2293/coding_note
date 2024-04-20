@@ -32,6 +32,28 @@ class PreFixSumMatrix:
         assert 0 <= y1 <= y2 <= self.n - 1
         return self.prefix[x2 + 1][y2 + 1] - self.prefix[x1][y2 + 1] - self.prefix[x2 + 1][y1] + self.prefix[x1][y1]
 
+    @staticmethod
+    def get_product_matrix_except_current(grid: List[List[int]], mod = 1) -> List[List[int]]:
+        """
+        生成一个矩阵，每个位置的值为除了自己以外的所有元素的乘积
+        :param grid: 原始矩阵
+        :param mod: 取模，默认不取模
+        :return: 生成的矩阵 
+        """
+        m, n = len(grid), len(grid[0])
+        suf = 1
+        mat = [[0] * n for _ in range(m)]
+        for i in range(m - 1, -1, -1):
+            for j in range(n - 1, -1, -1):
+                mat[i][j] = suf
+                suf = (suf * grid[i][j]) % mod
+        pre = 1
+        for i in range(m):
+            for j in range(n):
+                mat[i][j] = (mat[i][j] * pre) % mod
+                pre = (pre * grid[i][j]) % mod
+        return mat
+
 
 class DifferenceArray:
     def __init__(self):
