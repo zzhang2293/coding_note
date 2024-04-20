@@ -3,7 +3,6 @@ from typing import List, Any
 
 
 class BasicTrieTemplate:
-
     class TrieNode:
         def __init__(self):
             self.child: Any = [None] * 26
@@ -135,5 +134,62 @@ class BasicTrieTemplate:
         return
 
 
+class BinaryTrieXor:
+    """
+    01 字典树 xor 模板
+    """
+    class Node:
+        __slots__ = 'children', 'cnt'
 
+        def __init__(self):
+            self.children = [None, None]
+            self.cnt = 0  # 字典树大小
 
+    def __init__(self, high_bit: int):
+        self.high_bit = high_bit
+        self.root: Any = self.Node()
+
+    def insert(self, val: int) -> None:
+        """
+        把一个数插入到01字典树里
+        :param val:
+        :return:
+        """
+        cur = self.root
+        for i in range(self.high_bit, -1, -1):
+            bit = (val >> i) & 1
+            if cur.children[bit] is None:
+                cur.children[bit] = self.Node()
+            cur = cur.children[bit]
+            cur.cnt += 1
+        return cur
+
+    def remove(self, val: int) -> None:
+        """
+        把一个数从01字典树里删除
+        :param val:
+        :return:
+        """
+        cur = self.root
+        for i in range(self.high_bit, -1, -1):
+            bit = (val >> i) & 1
+            cur = cur.children[bit]
+            cur.cnt -= 1  # 删除一个数，cnt减1
+        return cur
+
+    def max_xor(self, val: int) -> int:
+        """
+        找到一个数，使得和val异或最大
+        :param val:
+        :return:
+        """
+        cur = self.root
+        ans = 0
+        for i in range(self.high_bit, -1, -1):
+            bit = (val >> i) & 1
+            if cur.children[bit ^ 1] is not None and cur.children[bit ^ 1].cnt > 0:
+                ans |= 1 << i
+                cur = cur.children[bit ^ 1]
+            else:
+                cur = cur.children[bit]
+        return ans
