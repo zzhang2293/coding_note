@@ -1,15 +1,11 @@
-import heapq
-from collections import deque
-from itertools import pairwise
-from typing import List, Counter
+import bisect
+import math
+from collections import Counter
+from functools import cache
 from math import inf
-from itertools import combinations
+from typing import List
+
 
 mod = 10 ** 9 + 7
-
-print(int("001"))
-
-
-
 
 

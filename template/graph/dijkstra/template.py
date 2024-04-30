@@ -163,7 +163,7 @@ class Dijkstra:
         heap = [(0, src)]
         while heap:
             d, node = heappop(heap)
-            if dist[i][1] < d:
+            if dist[node][1] < d:
                 continue
             for nxt, w in graph[node]:
                 if dist[nxt][0] > d + w:
