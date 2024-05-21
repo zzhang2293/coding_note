@@ -195,3 +195,22 @@ class Solution:
         for num in nums:
             total ^= num
         return total == 0 or len(nums) % 2 == 0
+
+    @staticmethod
+    def minimumOneBitOperations( n: int) -> int:
+        """
+        https://leetcode.cn/problems/minimum-one-bit-operations-to-make-integers-zero/
+        格雷码：相邻两个数只有一个bit不同
+        :param n:
+        :return:
+        """
+        if n <= 1:
+            return n
+        pos = 0
+        for i in range(n.bit_length() - 1, -1, -1):
+            if (n >> i) & 1 == 1:
+                pos = i
+                break
+        return (1 << (pos + 1)) - 1 - self.minimumOneBitOperations(n - (1 << pos))
+
+

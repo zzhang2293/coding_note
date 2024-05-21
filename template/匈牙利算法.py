@@ -8,9 +8,7 @@ def Hungarian(n: int, edges: list[list[int]]):
                     return True
         return False
 
-    graph = [[-1] * n for _ in range(n)]
-    for i in range(n):
-        graph[i] = []
+    graph = [[-1] * n for _ in range(n)]  # adj matrix
 
     for a, b in edges:
         graph[a][b] = 1
@@ -23,11 +21,6 @@ def Hungarian(n: int, edges: list[list[int]]):
         if match(i):
             ans += 1
     return ans
-
-
-
-
-
 
 
 
