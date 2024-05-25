@@ -254,10 +254,8 @@ class SegmentTreeSumQueryUpdate:
         return dfs(1, len(self.arr), 1)
 
 
-tree = SegmentTreeSumQueryUpdate([1, 2, 3, 4, 5])
-print(tree.query(1, 4))
-tree.increment(1, 4, 1)
-print(tree.query(1, 4))
-tree.update_operation(1, 4, 100)
-print(tree.query(1, 1))
 
+class SegmentTreeSumSetMod:
+
+    def __init__(self):
+        pass
