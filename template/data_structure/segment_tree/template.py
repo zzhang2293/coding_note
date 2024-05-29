@@ -255,7 +255,4 @@ class SegmentTreeSumQueryUpdate:
 
 
 
-class SegmentTreeSumSetMod:
 
-    def __init__(self):
-        pass
